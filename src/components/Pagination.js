@@ -38,13 +38,15 @@ const Img = styled.img`
 const Pagination = ({ postPerPage, totalPosts, paginate, currentPage }) => {
   const pageNumbers = [];
   const group = 5;
-  const [number, setNumber] = useState(1);
+  const [number, setNumber] = useState(1); //현재 누르는 페이지
 
   for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
-    pageNumbers.push(i);
+    // 전체 옷/21
+    pageNumbers.push(i); //모든 page들이 push됌
   }
   const plusNumber = () => {
     if (number !== Math.ceil(pageNumbers.length / 5)) {
+      //마지막 페이지가 아니라면
       setNumber(number + 1);
     }
   };
@@ -59,7 +61,7 @@ const Pagination = ({ postPerPage, totalPosts, paginate, currentPage }) => {
       <Container>
         <Img onClick={minusNumber} src='image/left-arrow.png' />
         {pageNumbers.map((num, index) =>
-          number * group >= index + 1 && number * group - 5 < index + 1 ? (
+          number * group >= index + 1 && number * group - 5 < index + 1 ? ( // 끝 조건 && 처음 조건
             <Button
               key={num}
               num={num}
